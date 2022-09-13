@@ -1,6 +1,7 @@
 """
-Entry point for this balance administrator.
+Entry point for this patrimony administrator.
 """
+from .patrimony_io_manager import PatrimonyIOManager
 
 def show_all_itens():
     """
@@ -26,7 +27,7 @@ def create_item():
 
 
 def read_item(item_id):
-    """Read all info from patrimony value"""
+    """Read all info from patrimony item"""
     pass
 
 
@@ -69,19 +70,26 @@ def main():
 
         if option == "1":
             print("Triggering code to show all items (to implement)")
+
         elif option == "2":
             print("Triggering code to show balance sheet (to implement)")
+
         elif option == "3":
             print("Triggering code to show new flow and total value (to implement)")
+
         elif option == "4":
             print("Triggering code to add item (to implement)")
+
         elif option == "5":
             print("Triggering code to update item (to implement)")
+
         elif option == "6":
             print("Triggering code to subtract item (to implement)")
+
         elif option == "0":
             print("Exiting program ...")
             on = False
+
         else:
             print("Invalid option!")
 
