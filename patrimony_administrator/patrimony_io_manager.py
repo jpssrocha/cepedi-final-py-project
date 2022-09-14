@@ -21,7 +21,7 @@ class PatrimonyIOManager:
 
 
     def __str__(self):
-        return f" {self.count = }\n {self.items = }"
+        return f" Total item number: {self.count}\n Items = \n {json.dumps(self.items, indent=4)} "
 
 
     def __repr__(self):
@@ -102,7 +102,7 @@ class PatrimonyIOManager:
         return self.count
 
     # Read
-    def read_item(self, item_id: int) -> dict | None:
+    def read_item(self, item_id: str) -> dict | None:
         """Read patrimony item based on id"""
 
         try:
@@ -181,7 +181,7 @@ def tests():
 
     print("Testing COMMIT")
     patrimony.commit_changes(print_=True)
-    patrimony.commit_changes(clear=True)
+    # patrimony.commit_changes(clear=True)
 
 
 if __name__ == "__main__":
