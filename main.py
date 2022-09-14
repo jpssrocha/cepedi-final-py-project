@@ -1,14 +1,19 @@
 """
-Entry point for this patrimony administrator.
+Entry point for this patrimony administrator application
 """
-from .patrimony_io_manager import PatrimonyIOManager
+import json
+import os
 
-def show_all_itens():
+from patrimony_administrator.patrimony_io_manager import PatrimonyIOManager
+from patrimony_administrator.patrimony_logic_manager import PatrimonyLogicManager
+
+def show_all_itens(io_manager: PatrimonyIOManager):
     """
     Show all patrimony items in a condensed view. Only the most relevant
     information.
     """
-    pass
+    print()
+    print(io_manager)
 
 
 def show_balance_sheet():
@@ -26,9 +31,14 @@ def create_item():
     pass
 
 
-def read_item(item_id):
+def read_item(io_manager: PatrimonyIOManager):
     """Read all info from patrimony item"""
-    pass
+
+    id_ = input("Which is the item id number? ")
+
+    print(
+        json.dumps(io_manager.read_item(id_), indent=4)
+    )
 
 
 def update_item(item_id):
@@ -41,8 +51,8 @@ def delete_item(item_id):
     pass
 
 
-def main():
-    """Balance administrator interface"""
+def main(io_manager: PatrimonyIOManager):
+    """Patrimony administrator entry point"""
 
     print(
         """
@@ -69,7 +79,7 @@ def main():
         option = input("Option: ")
 
         if option == "1":
-            print("Triggering code to show all items (to implement)")
+           show_all_itens(io_manager)
 
         elif option == "2":
             print("Triggering code to show balance sheet (to implement)")
@@ -81,9 +91,12 @@ def main():
             print("Triggering code to add item (to implement)")
 
         elif option == "5":
-            print("Triggering code to update item (to implement)")
+            read_item(io_manager)
 
         elif option == "6":
+            print("Triggering code to update item (to implement)")
+
+        elif option == "7":
             print("Triggering code to subtract item (to implement)")
 
         elif option == "0":
@@ -95,5 +108,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+
+    PATRIMONY_FILE = f"{os.path.dirname(__file__)}/patrimony.json"
+    io_manager = PatrimonyIOManager(PATRIMONY_FILE)
+
+    main(io_manager)
 
