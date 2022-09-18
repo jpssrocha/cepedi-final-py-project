@@ -92,14 +92,13 @@ class PatrimonyIOManager:
 
         # Some assertions to make the test more realistic
         assert {"type"} <= set(item_characteristics), "Item must have a type key"
-        assert item_characteristics["type"] in ["asset", "liability"], "Item must have a type of `asset` or `liability`"
 
-        derived_characteristics = {"id": self.count}
-        item_characteristics = {**derived_characteristics, **item_characteristics}
+        # derived_characteristics = {"id": self.index}
+        # item_characteristics = {**derived_characteristics, **item_characteristics}
 
-        self.items[self.count] = item_characteristics
+        self.items[str(self.index)] = item_characteristics
 
-        return self.count
+        return self.index
 
     # Read
     def read_item(self, item_id: str) -> dict | None:
@@ -113,7 +112,7 @@ class PatrimonyIOManager:
 
 
     # Update
-    def update_item(self, item_id: int, update_as_dict: dict) -> dict | None:
+    def update_item(self, item_id: str, update_as_dict: dict) -> dict | None:
         """
         Update item properties using it's id and a dictionary with the key
         representing the property name and value the updated value.
@@ -130,7 +129,7 @@ class PatrimonyIOManager:
         return self.items[item_id]
 
     # Delete
-    def delete_item(self, item_id: int) -> dict | None:
+    def delete_item(self, item_id: str) -> dict | None:
         """Delete item based on id"""
         try:
             item = self.items[item_id]
